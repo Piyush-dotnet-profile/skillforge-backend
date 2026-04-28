@@ -60,13 +60,13 @@ const startServer = async () => {
     // Start Express server
     app.listen(PORT, () => {
       console.log(`
-╔═══════════════════════════════════════════╗
-║   Skill Forge Backend - Server Running    ║
-╠═══════════════════════════════════════════╣
-║   Port: ${PORT}                           ║
-║   Environment: ${process.env.NODE_ENV || "development"}       ║
+╔═══════════════════════════════════════════════════════════════════╗
+║   Skill Forge Backend - Server Running                                  ║
+╠═══════════════════════════════════════════════════════════════════╣
+║   Port: ${PORT}                                                         ║
+║   Environment: ${process.env.NODE_ENV || "development"}                 ║
 ║   CORS Origin: ${process.env.CORS_ORIGIN || "http://localhost:5173"}    ║
-╚═══════════════════════════════════════════╝
+╚═══════════════════════════════════════════════════════════════════╝
       `);
     });
   } catch (error) {
