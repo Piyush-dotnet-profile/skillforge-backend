@@ -97,6 +97,33 @@ router.get("/:id/modules", optionalAuth, async (req, res) => {
   }
 });
 
+// GET /api/courses/:courseId/modules/:moduleId
+router.get("/:courseId/modules/:moduleId", optionalAuth, async (req, res) => {
+  try {
+    const { courseId, moduleId } = req.params;
+
+    const course = await Course.findById(courseId).select("modules");
+
+    if (!course) {
+      return res.status(404).json({ message: "Course not found" });
+    }
+
+    const module = course.modules.id(moduleId); // correct usage
+
+    if (!module) {
+      return res.status(404).json({ message: "Module not found" });
+    }
+
+    res.json(module);
+  } catch (error) {
+    console.error("Get module error:", error);
+    res.status(500).json({
+      message: "Error fetching module",
+      error: error.message,
+    });
+  }
+});
+
 // POST /api/courses/:id/review - Add a review to course
 router.post("/:id/review", authenticateToken, async (req, res) => {
   try {
